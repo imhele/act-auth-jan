@@ -1,0 +1,60 @@
+{
+  "name": "@imhele/act-auth-jan",
+  "version": "0.1.0",
+  "description": "Act Auth January",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "typings": "es/index.d.ts",
+  "scripts": {
+    "build": "npm run build:es && npm run build:lib",
+    "build:es": "rm -rf es/ && tsc --build tsconfig.json",
+    "build:lib": "rm -rf lib/ && tsc --build tsconfig.es5.json",
+    "lint-fix": "npm run lint:script -- --fix",
+    "lint": "npm run build:es && eslint . --ext '.js,.jsx,.ts,.tsx'",
+    "prettier:ts": "prettier ./**/*.ts --write",
+    "prettier:js": "prettier ./**/*.js --write --loglevel=error"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "devDependencies": {
+    "@types/node": "^13.9.5",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-formatter-pretty": "^3.0.0",
+    "eslint-plugin-compat": "^3.1.1",
+    "eslint-plugin-eslint-comments": "^3.1.1",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-markdown": "^1.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "lint-staged": "^10.0.8",
+    "prettier": "^1.19.0",
+    "typescript": "^3.8.3",
+    "yorkie": "^2.0.0"
+  },
+  "files": [
+    "es",
+    "lib"
+  ],
+  "lint-staged": {
+    "*.{md,json}": [
+      "prettier --write"
+    ],
+    "*.js": [
+      "eslint",
+      "prettier --write"
+    ],
+    "*.ts": [
+      "eslint",
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "repository": {
+    "url": "https://github.com/act-auth/act-auth",
+    "type": "github"
+  }
+}
